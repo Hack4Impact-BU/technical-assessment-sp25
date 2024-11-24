@@ -9,6 +9,8 @@ This will not require user authentication, but will require a database and use o
 
 <img src='./demo-ss/mockup.png' width="500px"/>
 
+blahhh
+
 *This is an example of what the app could look like. Designed by Owen in Figma and linked below*
 
 ## 🗂️ Requirements
