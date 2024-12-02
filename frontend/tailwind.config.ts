@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import Catppuccin from '@catppuccin/tailwindcss'
+/** @type {import('tailwindcss').Config} */
 
 export default {
   content: [
@@ -14,5 +16,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [Catppuccin({
+    prefix: 'ctp',
+    defaultFlavour: 'mocha'
+  })],
 } satisfies Config;
