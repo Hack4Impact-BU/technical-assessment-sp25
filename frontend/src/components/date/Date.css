@@ -1,0 +1,33 @@
+.flex-container2 {
+    padding: 20px;
+    display: flex;
+    justify-content: right;
+    gap: 380px;
+    margin: auto;
+}
+
+#date {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #AF9AB2;
+    border-radius: 8px;
+    background-color: #D0FCB3;
+    color: #271F30;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#date:focus {
+    border-color: #42a5f5;
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}
+
+#date:hover {
+    border-color: #64b5f6;
+}
+
+#date::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(30%);
+}
