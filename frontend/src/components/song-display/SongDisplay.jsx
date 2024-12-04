@@ -1,60 +1,63 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Card, CardContent, Box, CardMedia, Typography } from '@mui/material';
 
 
-function SongDisplay({}) { //SongDisplay function will take 3 props for the 3 songs that it displays
-    return(
-        <>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '50px',
-                justifyContent: 'space-around',
-            }}>
-                <Card raised sx={{ width: 400, height: 400, border:3, borderColor: '#AF9AB2', }}>
-                    <CardMedia
-                        component="img"
-                        height="300"
-                        image="https://preview.redd.it/kanye-west-graduation-3840x2160-v0-kjektcn4myv91.png?width=640&crop=smart&auto=webp&s=fa4b58c81acb3ec38c640cca6ef11d66d01c3cf3"
-                        alt="Graduation"
-                    />
-                    <CardContent>
-                        <Typography align="center" variant="h4">Drunk and Hot Girls</Typography>
-                        <Typography align="center" variant="body1">Kanye West</Typography>
-                    </CardContent>
-                        
-                </Card>
+function SongDisplay() {
+    const [songs, setSongs] = useState([]);
 
-                <Card raised sx={{ width: 400, height: 400, border:3, borderColor: '#AF9AB2', }}>
-                    <CardMedia
-                        component="img"
-                        height="300"
-                        image="https://thedmonline.com/wp-content/uploads/2022/11/Her_Loss.jpg"
-                        alt="Her Loss"
-                    />
-                    <CardContent>
-                        <Typography align="center" variant="h4">Middle of the Ocean</Typography>
-                        <Typography align="center" variant="body1">Drake</Typography>
-                    </CardContent>
-                        
-                </Card>
+    const fetchSongs = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/api/songs');
+            const data = await response.json();
+            console.log('Fetched songs', data);
+            setSongs(data);
+        } catch {
+            console.error('Error fetching songs', error);
+        }
+    };
 
-                <Card raised sx={{ width: 400, height: 400, border:3, borderColor: '#AF9AB2', }}>
+    useEffect(() => {
+        fetchSongs();
+    }, []);
+
+
+
+    return (
+    
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            padding: '50px',
+            justifyContent: 'space-around',
+        }}>
+            {songs.map((song,index) => (
+                <Card
+                    key={index}
+                    raised
+                    sx={{ width: 400, height: 400, border:3, borderColor: '#AF9AB2'}}
+                >
                     <CardMedia
                         component="img"
                         height="300"
-                        image="https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png"
-                        alt="To Pimp a Butterfly"
+                        image={song.image}
+                        alt={song.title}
+                        sx={{
+                            height: '75%',
+                            width: '100%',
+                        }}
                     />
                     <CardContent>
-                        <Typography align="center" variant="h4">Alright</Typography>
-                        <Typography align="center" variant="body1">Kendrick Lamar</Typography>
+                        <Typography align='center' variant='h4'>
+                            {song.title}
+                        </Typography>
+                        <Typography align='center' variant='body1'>
+                            {song.artist}
+                        </Typography>
                     </CardContent>
-                        
                 </Card>
-            </Box>
-        </>
-    )
+            ))}
+        </Box>
+    );
 }
 
 export default SongDisplay;

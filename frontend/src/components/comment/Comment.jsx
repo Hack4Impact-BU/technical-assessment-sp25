@@ -1,11 +1,42 @@
 import * as React from 'react';
 import { Box, TextField, FormControl, RadioGroup, Radio, FormControlLabel, Button} from '@mui/material';
-// import { SendIcon } from '@mui/icons-material/Send';
 import SendIcon from '@mui/icons-material/Send';
 
 function Comment() {
     const [username, setUsername] = React.useState('');
     const [comment, setComment] = React.useState('');
+    const [songChoice, setSongChoice] = React.useState('song1');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(!username || !comment) {
+            alert('All fields required!');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:4000/api/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    songChoice,
+                    username,
+                    comment
+                }),
+            });
+
+            if (response.status === 201) {
+                alert('Comment added successfully');
+                setUsername('');
+                setComment('');
+            }
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
+    };
 
     return (
         <Box
@@ -33,9 +64,12 @@ function Comment() {
                 <RadioGroup
                     row
                     required
-                    defaultValue=""
-                    name="song-choice"
+                    value={songChoice}
+                    id="song-choice"
                     sx={{padding: 2}}
+                    onChange={(event) => {
+                        setSongChoice(event.target.value)
+                    }}
                 >
                     <FormControlLabel 
                     value="song1" 
@@ -71,6 +105,7 @@ function Comment() {
             />
             
             <TextField
+                required
                 id="comment-input"
                 label="Comment"
                 variant='filled'
@@ -93,9 +128,7 @@ function Comment() {
             color='#271F30'
             
             size='large' 
-            onClick={() => {
-                alert('Posted');
-            }}
+            onClick={(e) => handleSubmit(e)}
             endIcon={<SendIcon/>}
             sx={{
                 bgcolor:'#6C5A49',
