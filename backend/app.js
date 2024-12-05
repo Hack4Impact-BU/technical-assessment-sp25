@@ -9,8 +9,8 @@ app.use(bodyParser.json())
 
 const PORT = 4000
 
-app.post('/chat', (req, res) => {
-    const userMessage = req.body.userMessage
+app.post('/day', (req, res) => {
+    const date = req.body.date
 
     res.json({
         message: 'testing message',
