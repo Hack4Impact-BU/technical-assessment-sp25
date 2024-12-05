@@ -54,7 +54,7 @@ export default function SongCarousel({ currentDate }: SongCarouselProps) {
                             No songs found for today.
                         </Typography> 
                         : songs?.map((song) => (
-                            <SongCard key={song.id} song={song} isTopSong={song.id === topSong?.id} />
+                            <SongCard key={song.id} song={song} isTopSong={song.id === topSong?.id && song.num_votes > 0} />
                         ))
                     }
                 </Box>

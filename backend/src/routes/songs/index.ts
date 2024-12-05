@@ -65,7 +65,6 @@ songRouter.post('/vote', async (req: Request, res: Response) => {
         if (checkIfSongExistsResponse.rows.length === 0) {
             return res.status(404).json({ error: 'Song not found' });
         } 
-        const song:Song = checkIfSongExistsResponse.rows[0]; 
         const addVoteQuery = `UPDATE songs SET num_votes = num_votes + 1 WHERE id = $1 RETURNING *`;
         const addVoteResponse = await dbClient.query(addVoteQuery, [id]);
         const updatedSong:Song = addVoteResponse.rows[0];
