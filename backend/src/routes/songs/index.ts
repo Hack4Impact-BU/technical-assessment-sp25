@@ -43,4 +43,37 @@ songRouter.get('/', async (req: Request, res: Response) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 });
+
+/**
+ * POST /api/songs/vote
+ * @summary Adds a vote to a song in the database
+ * @tags comments
+ * @param {number} body.song_id.required - The song_id of the song to vote on
+ * @return {object} - 200 - The vote that was added
+ * @return {Error} 400 - Bad request
+ * @return {Error} 500 - Internal server error
+ */
+songRouter.post('/vote', async (req: Request, res: Response) => {
+    const { id } = req.body;
+    if ( !id || typeof id !== 'number') {
+        return res.status(400).json({ error: 'Missing required parameter(s): song_id' });
+    }
+    try {
+        const currentDate = new Date().toISOString().split('T')[0];
+        const checkIfSongExistsQuery = `SELECT * FROM songs WHERE id = $1`;
+        const checkIfSongExistsResponse = await dbClient.query(checkIfSongExistsQuery, [id]);
+        if (checkIfSongExistsResponse.rows.length === 0) {
+            return res.status(404).json({ error: 'Song not found' });
+        } 
+        const song:Song = checkIfSongExistsResponse.rows[0]; 
+        const addVoteQuery = `UPDATE songs SET num_votes = num_votes + 1 WHERE id = $1 RETURNING *`;
+        const addVoteResponse = await dbClient.query(addVoteQuery, [id]);
+        const updatedSong:Song = addVoteResponse.rows[0];
+        return res.status(200).json(updatedSong);
+    } catch (e) {
+        console.error(e);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 module.exports = songRouter;
