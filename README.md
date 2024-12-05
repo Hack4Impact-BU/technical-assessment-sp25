@@ -6,7 +6,7 @@
 - **Allows users to comment on the songs that are currently featured**
 - **Has a history of all the songs that have been featured in the past**
 - **Gives users with 3 or more comments a top-contributor badge**
-- **Allows users to vote on their favorite song and displays the song with the most vote when users visit previous days**
+- **Allows users to vote on their favorite song and hightlights the song with the most vote when users visit previous days**
 
 ## Technologies Used
 
