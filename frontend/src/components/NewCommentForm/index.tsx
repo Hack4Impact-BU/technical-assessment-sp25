@@ -43,7 +43,7 @@ export default function NewCommentForm({ commentFormOpen, setCommentFormOpen, da
 
 
     const handleSubmit = () => {
-        if (selectedSongId === 0 || !comment || !username) {
+        if (selectedSongId === 0 || !comment || !username || date.toISOString().split('T')[0] !== new Date().toISOString().split('T')[0]) {
             return;
         }
         voteMutation.mutate({ id: selectedSongId });

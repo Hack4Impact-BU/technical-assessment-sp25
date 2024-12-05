@@ -7,11 +7,18 @@ import { Song } from '../../types/songs';
 
 type SongCardProps = {
   song: Song;
+  isTopSong: boolean;
 };
 
-export default function SongCard ({ song }: SongCardProps) {
+export default function SongCard ({ song, isTopSong }: SongCardProps ) {
     return (
-        <Card>
+        <Card
+            variant={isTopSong ? 'elevation' : 'outlined'}
+            sx={{
+                bgcolor: isTopSong ? 'secondary.dark' : 'background.paper',
+                color: isTopSong ? 'secondary.contrastText' : 'text.primary',
+            }}
+        >
             <CardMedia
                 component="img"
                 className='h-52 md:h-60'
@@ -22,7 +29,7 @@ export default function SongCard ({ song }: SongCardProps) {
                 <Typography 
                     variant="h5" 
                     component="div"
-                    color='secondary'
+                    color={isTopSong ? 'secondary.contrastText' : 'text.primary'}
                 >
                     <Link 
                         href={song.genius_url} 

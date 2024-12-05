@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import WarningAmberOutlined from '@mui/icons-material/WarningAmberOutlined';
 import Skeleton from '@mui/material/Skeleton';
-import { fetchSongsByDate } from "../../api/songs";
+import { fetchSongsByDate, fetchTopSongByDate } from "../../api/songs";
 import { useQuery } from "@tanstack/react-query";
 import { Song } from "../../types/songs";
 
@@ -17,6 +17,11 @@ export default function SongCarousel({ currentDate }: SongCarouselProps) {
         queryFn: fetchSongsByDate
     });
 
+    const { data: topSong } = useQuery<Song, Error>({
+        queryKey: ['topSong', currentDate],
+        queryFn: fetchTopSongByDate
+    });
+    
     if (isLoading) {
         return (
             <Box className='flex w-full justify-evenly'>
@@ -49,7 +54,7 @@ export default function SongCarousel({ currentDate }: SongCarouselProps) {
                             No songs found for today.
                         </Typography> 
                         : songs?.map((song) => (
-                            <SongCard key={song.id} song={song} />
+                            <SongCard key={song.id} song={song} isTopSong={song.id === topSong?.id} />
                         ))
                     }
                 </Box>
