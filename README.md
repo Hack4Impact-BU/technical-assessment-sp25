@@ -25,3 +25,13 @@
 - **Express.js**
 - **Node.js**
 - **PostgreSQL**
+
+## Application Questions
+
+### How the project went
+
+The project went quite well, I was able to implement most of the bonus features along with the required ones. This was also a learning experience for me as it was the first project I built entirely with TypeScript and React-Query. I thought it was a challenging but rewarding experience as it required some critical thinking - especially when it came to the voting feature, fetching random songs, and displaying the top contributor badge - rather than mindlessly making API requests and displaying the response.
+
+### What I would change about the next assessment
+
+I think this project was well scoped and the requirements were well outlined without being too restrictive. I wouldn't change anything about the next assessment.
