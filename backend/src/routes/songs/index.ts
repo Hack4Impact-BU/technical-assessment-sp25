@@ -76,4 +76,33 @@ songRouter.post('/vote', async (req: Request, res: Response) => {
     }
 });
 
+/**
+ * GET /api/songs/top-voted
+ * @summary Fetches the top-voted song for a given date
+ * @tags song
+ * @param {string} query.date.required - The date to fetch the top-voted song for
+ * @return {Song} 200 - The top-voted song for the given date
+ * @return {Error} 400 - Bad request
+ * @return {Error} 404 - No songs found for the given date
+ * @return {Error} 500 - Internal server error
+ */
+songRouter.get('/top-voted', async (req: Request, res: Response) => {
+    const { date } = req.query;
+    if (!date || typeof date !== 'string') {
+        return res.status(400).json({ error: 'Missing required parameter: date' });
+    }
+    try {
+        const query = `SELECT * FROM songs WHERE featured_date = $1 ORDER BY num_votes DESC LIMIT 1`;
+        const response = await dbClient.query(query, [date]);
+        const topVotedSong: Song = response.rows[0];
+        if (!topVotedSong) {
+            return res.status(404).json({ error: 'No songs found for the given date' });
+        }
+        return res.status(200).json(topVotedSong);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 module.exports = songRouter;
