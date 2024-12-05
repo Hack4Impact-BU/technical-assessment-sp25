@@ -4,5 +4,6 @@ export interface Song {
     artist: string | 'Unknown';
     thumbnail_url: string | null;
     genius_url: string;
-    username: string;
+    num_votes?: number;
+    featured_date?: string;
 }

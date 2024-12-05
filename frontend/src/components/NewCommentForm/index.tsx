@@ -1,8 +1,12 @@
 import { addComment } from "../../api/comments";
+import { voteForSong } from "../../api/songs";
+import { Song } from "../../types/songs";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
@@ -12,14 +16,17 @@ import Close from "@mui/icons-material/Close";
 type NewCommentFormProps = {
     commentFormOpen: boolean;
     setCommentFormOpen: (open: boolean) => void;
+    date: Date;
+    songs: Song[];
 }
 
-export default function NewCommentForm({ commentFormOpen, setCommentFormOpen }: NewCommentFormProps) {
+export default function NewCommentForm({ commentFormOpen, setCommentFormOpen, date, songs }: NewCommentFormProps) {
     const [ comment, setComment ] = useState('');
     const [ username, setUsername ] = useState('');
+    const [ selectedSongId, setSelectedSongId ] = useState<number>(0);
     const queryClient = useQueryClient();
 
-    const mutation = useMutation({
+    const commentsMutation = useMutation({
         mutationKey: ['comments'],
         mutationFn: addComment,
         onSuccess: () => { 
@@ -29,10 +36,21 @@ export default function NewCommentForm({ commentFormOpen, setCommentFormOpen }: 
         }
     });
 
+    const voteMutation = useMutation({
+        mutationKey: ['songs'],
+        mutationFn: voteForSong,
+    });
+
+
     const handleSubmit = () => {
-        mutation.mutate({ content: comment, username });
+        if (selectedSongId === 0 || !comment || !username) {
+            return;
+        }
+        voteMutation.mutate({ id: selectedSongId });
+        commentsMutation.mutate({ content: comment, username });
         setComment('');
         setUsername('');
+        setSelectedSongId(0);
     }
 
     return (
@@ -63,18 +81,32 @@ export default function NewCommentForm({ commentFormOpen, setCommentFormOpen }: 
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
+                <Select 
+                    variant='standard'
+                    value={selectedSongId}
+                    onChange={(e) => setSelectedSongId(e.target.value as number)}
+                    className='self-start w-1/2'
+                    label="Select your favorite song"
+                    disabled={songs.length === 0}
+                >
+                    {songs.map((song) => (
+                        <MenuItem key={song.id} value={song.id}>
+                            {song.title} by {song.artist}
+                        </MenuItem>
+                    ))}
+                </Select>
                 <Button
                     variant="contained"
                     onClick={handleSubmit}
-                    disabled={mutation.isPending || !comment || !username || mutation.isError}
+                    disabled={commentsMutation.isPending || !comment || !username || commentsMutation.isError}
                     sx={{
                         bgcolor: 'secondary.main'
                     }}
                 >
                     {
-                        mutation.isPending
+                        commentsMutation.isPending
                             ? 'Adding comment...'
-                            : mutation.isError
+                            : commentsMutation.isError
                                 ? 'Failed to add comment'
                                 : 'Add comment'
                     }

@@ -6,9 +6,10 @@ import NewCommentForm from "../NewCommentForm";
 import IconButton from "@mui/material/IconButton";
 import AddOutlined from "@mui/icons-material/AddOutlined";
 import WarningAmberOutlined from "@mui/icons-material/WarningAmberOutlined";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchCommentsByDate } from "../../api/comments";
 import { Comment } from "../../types/comments";
+import { Song } from "../../types/songs";
 import { useState } from "react";
 import { Tooltip } from "@mui/material";
 
@@ -22,6 +23,8 @@ export default function CommentSection({ currentDate }: CommentSectionProps) {
         queryKey: ['comments', currentDate],
         queryFn: fetchCommentsByDate
     });
+    const queryClient = useQueryClient();
+    const songs: Song[] | undefined = queryClient.getQueryData(['songs', currentDate]) ?? [];
 
     if (isLoading) {
         return (
@@ -65,6 +68,8 @@ export default function CommentSection({ currentDate }: CommentSectionProps) {
                 <NewCommentForm
                     commentFormOpen={commentFormOpen}
                     setCommentFormOpen={setCommentFormOpen}
+                    date={currentDate}
+                    songs={songs}
                 />
                 {comments?.map((comment) => (
                     <CommentCard key={comment.id} comment={comment} />
