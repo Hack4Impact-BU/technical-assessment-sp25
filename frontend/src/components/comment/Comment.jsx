@@ -10,9 +10,15 @@ function Comment() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(!username || !comment) {
+        if(!username || !comment || !songChoice) {
             alert('All fields required!');
             return;
+        }
+
+        const commentData = {
+            username,
+            comment,
+            songChoice,
         }
 
         try {
@@ -21,22 +27,23 @@ function Comment() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    songChoice,
-                    username,
-                    comment
-                }),
+                body: JSON.stringify(commentData),
             });
 
-            if (response.status === 201) {
-                alert('Comment added successfully');
+            if(response.ok) {
+                console.log('Comment submitted successfully!');
                 setUsername('');
                 setComment('');
+                setSongChoice('song1');
+            } else {
+                alert('Failed to submit comment. Please try again.');
             }
         } catch (error) {
-            console.error('Error adding comment:', error);
+            console.error('Error submitting comment', error);
         }
+        
     };
+    
 
     return (
         <Box
