@@ -8,6 +8,57 @@
 - **Gives users with 3 or more comments a top-contributor badge**
 - **Allows users to vote on their favorite song and hightlights the song with the most vote when users visit previous days**
 
+## Running the Project
+
+### Frontend
+
+1. Clone the repository
+
+```bash
+git clone git@github.com:koacow/kcao-technical-assessment-sp25.git
+```
+
+2. Navigate to the `frontend` directory
+
+```bash
+cd frontend
+```
+
+3. Install the dependencies
+
+```bash
+npm install
+```
+
+4. Start the development server
+
+```bash
+npm run dev
+```
+
+### Backend
+
+1. Navigate to the `backend` directory
+
+```bash
+cd backend
+```
+
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Add a `.env` file using the `example.env` file as a template
+
+4. Start the development server
+
+```bash
+npm start
+```
+
+
 ## Technologies Used
 
 ### Frontend
@@ -27,6 +78,10 @@
 - **PostgreSQL**
 
 ## Application Questions
+
+### Demo Link
+
+[Demo Video](https://drive.google.com/file/d/1LZFqRsOi98Q_cq7F-jbXirPNeMe45evE/view?usp=sharing)
 
 ### How the project went
 
