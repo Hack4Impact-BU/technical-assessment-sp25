@@ -1,0 +1,10 @@
+I found the frontend aspect of the project a little more difficult than the backend
+because I'm not super familiar with using React. I also liked using a UI library
+so that it was relatively cohesive, and if I could do it again I would choose a different
+one. There are some bugs, but I'm happy with what I'm submitting for the 
+timeframe I spent on it! I would also spend more time on the aesthetics if I had it.
+
+I'm not sure if the what I would change about the assessment refers to what I would change
+about my work or just the assessment in general. I answered what I would do differently above
+and in my video though, and I don't think there's anything I'd change about the assessment.
+I thought it was rewarding, regardless of if I get a position or not.
