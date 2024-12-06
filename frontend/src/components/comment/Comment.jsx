@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, TextField, FormControl, RadioGroup, Radio, FormControlLabel, Button} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-function Comment() {
+function Comment({ selectedDate }) {
     const [username, setUsername] = React.useState('');
     const [comment, setComment] = React.useState('');
     const [songChoice, setSongChoice] = React.useState('song1');
@@ -10,7 +10,7 @@ function Comment() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(!username || !comment || !songChoice) {
+        if(!username || !comment || !songChoice || !selectedDate) {
             alert('All fields required!');
             return;
         }
@@ -19,10 +19,11 @@ function Comment() {
             username,
             comment,
             songChoice,
+            date: selectedDate,
         }
 
         try {
-            const response = await fetch('http://localhost:4000/api/comments', {
+            const response = await fetch('http://localhost:4003/api/comments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +35,6 @@ function Comment() {
                 console.log('Comment submitted successfully!');
                 setUsername('');
                 setComment('');
-                setSongChoice('song1');
             } else {
                 alert('Failed to submit comment. Please try again.');
             }

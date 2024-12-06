@@ -1,0 +1,98 @@
+[
+    {
+        "_id": {
+            "$oid": "67527a92cee8f81d8ffe17bc"
+        },
+        "type": "dailySongs",
+        "songs": [
+            {
+                "title": "Gangsta Nation",
+                "artist": "Westside Connection",
+                "image": "https://images.genius.com/fbfe1907374919fb9c482e202020481b.600x599x1.jpg"
+            },
+            {
+                "title": "Watagatapitusberry (Remix)",
+                "artist": "Pitbull",
+                "image": "https://images.genius.com/c7e5823d87c75b2c6f1a6175b796c48a.640x640x1.jpg"
+            },
+            {
+                "title": "Forgive Me Father",
+                "artist": "Fabolous",
+                "image": "https://images.genius.com/4b857fc26420a638d0085145c7bcd7f3.1000x1000x1.jpg"
+            }
+        ],
+        "date": "2024-12-05"
+    },
+    {
+        "_id": {
+            "$oid": "67527a92cee8f81d8ffe17bf"
+        },
+        "type": "dailySongs",
+        "songs": [
+            {
+                "title": "ABC By Prodigy",
+                "artist": "Prodigy",
+                "image": "https://images.genius.com/e25277b4e30e7ff6801bccf445a029d8.499x499x1.jpg"
+            },
+            {
+                "title": "I'm a Hustla",
+                "artist": "Re-Up Gang",
+                "image": "https://images.genius.com/1ebf1b2c3d5b1d4a726e437705a95630.999x1000x1.jpg"
+            },
+            {
+                "title": "Always Love You",
+                "artist": "Gudda Gudda (Ft. Fre$h (Short Dawg) & Nicki Minaj)",
+                "image": "https://images.genius.com/cec6cb8071b2a20d1295b974180d0f66.500x500x1.jpg"
+            }
+        ],
+        "date": "2024-12-04"
+    },
+    {
+        "_id": {
+            "$oid": "67527a92cee8f81d8ffe17c0"
+        },
+        "type": "dailySongs",
+        "songs": [
+            {
+                "title": "Run This Town",
+                "artist": "Jay-Z feat. Rihanna & Kanye West",
+                "image": "https://images.rapgenius.com/9d9dd27bf8e56c8a3150dd6525344e0d.658x658x1.jpg"
+            },
+            {
+                "title": "Love The Way You Lie",
+                "artist": "Eminem feat. Rihanna",
+                "image": "https://images.genius.com/8fd912a6f98c888827281a17fdc6c534.500x500x1.jpg"
+            },
+            {
+                "title": "Empire State of Mind",
+                "artist": "Jay-Z feat. Alicia Keys",
+                "image": "https://images.genius.com/4ebced1abfe8116eb43e79192f5c0082.1000x1000x1.png"
+            }
+        ],
+        "date": "2024-12-03"
+    },
+    {
+        "_id": {
+            "$oid": "67527a92cee8f81d8ffe17c1"
+        },
+        "type": "dailySongs",
+        "songs": [
+            {
+                "title": "In Da Club",
+                "artist": "50 Cent",
+                "image": "https://images.genius.com/3389143a3e12456fc07deb03fd3225a7.1000x1000x1.png"
+            },
+            {
+                "title": "Gold Digger",
+                "artist": "Kanye West feat. Jamie Foxx",
+                "image": "https://images.genius.com/5a12791c0baf237e70a1ce0514791524.1000x1000x1.png"
+            },
+            {
+                "title": "Stronger",
+                "artist": "Kanye West",
+                "image": "https://images.genius.com/56db93b634f5aa512f2705df1f12265a.1000x1000x1.png"
+            }
+        ],
+        "date": "2024-12-02"
+    }
+]

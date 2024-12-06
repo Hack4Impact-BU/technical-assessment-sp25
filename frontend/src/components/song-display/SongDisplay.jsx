@@ -2,25 +2,31 @@ import React, {useState, useEffect} from 'react';
 import { Card, CardContent, Box, CardMedia, Typography } from '@mui/material';
 
 
-function SongDisplay() {
+function SongDisplay({ selectedDate }) {
     const [songs, setSongs] = useState({ song1: {}, song2: {}, song3: {} });
 
-    const fetchSongs = async () => {
-        const today = new Date().toISOString().split('T')[0];
-        try {
-            const response = await fetch(`http://localhost:4000/api/songs/${today}`);
-            const data = await response.json();
-            console.log('Fetched songs', data);
-            setSongs(data);
-        } catch {
-            console.error('Error fetching songs', error);
-        }
-    };
-
     useEffect(() => {
-        fetchSongs();
-    }, []);
+        const fetchSongs = async () => {
+            try {
+                console.log('fetching songs for date: ', selectedDate);
+                const response = await fetch(`http://localhost:4003/api/songs/${selectedDate}`);
+    
+                if (!response.ok) {
+                    throw new Error('Failed to fetch songs.');
+                }
+                const data = await response.json();
+                console.log('Fetched songs', data);
+                setSongs(data);
+            } catch {
+                setSongs({ song1: {}, song2: {}, song3: {} });
+                console.log('Date does not exist yet!');
+            }
+        };
 
+        if(selectedDate) {
+            fetchSongs();
+        }
+    }, [selectedDate]);
 
     return (
     

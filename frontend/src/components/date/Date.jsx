@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
+import Comment from '../comment/Comment';
 import "./Date.css";
 
-function Date() {
-    const [date, setDate] = React.useState("2024-11-29");
+function Date({ setSelectedDate }) {
+    const [ tempDate, setTempDate ] = React.useState('2024-12-02');
 
     return (
 
@@ -24,14 +25,16 @@ function Date() {
                 <Typography variant="h4" sx={{color: '#271F30'}}>Music Rating Platform</Typography>
             </Box>
             <input 
-            type="date" 
-            id="date" 
-            value={date} 
-            onChange={(event) => {
-                const newDate = event.target.value;
-                console.log("selected date: " + newDate);
-                setDate(newDate);
-            }}
+                type="date" 
+                id="date" 
+                value={tempDate}
+                min='2024-12-02'
+                onChange={(event) => {
+                    const newDate = event.target.value;
+                    console.log("selected date: " + newDate);
+                    setSelectedDate(newDate);
+                    setTempDate(newDate);
+                }}
             />
         </div>
     );
