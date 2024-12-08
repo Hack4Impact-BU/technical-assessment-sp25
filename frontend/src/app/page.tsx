@@ -1,7 +1,7 @@
 // range of ids: 1-11149999
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentForm from "./components/CommentForm";
 import { Comment } from "./types";
 import { Button } from "@mui/material";
@@ -11,7 +11,7 @@ const d = new Date()
 export default function Home() {
   const [songs] = useState(["Song 1", "Song 2", "Song 3"]);
   const [comments] = useState<Comment[]>([
-    {"author": "John", "comment": "Comment 1", "time": d.toISOString()},
+    {"author": "John", "comment": "Comment 1", "time": d.toLocaleDateString()},
     {"author": "John", "comment": "Comment 1", "time": d.toISOString()},
     {"author": "John", "comment": "Comment 1", "time": d.toISOString()},
     {"author": "John", "comment": "Comment 1", "time": d.toISOString()},
@@ -33,6 +33,14 @@ export default function Home() {
     setDate(resultDate.toLocaleDateString())
     setDays((days) => days + numDays)
   }
+
+    useEffect(() => {
+      const res = fetch('http://localhost:4000/songs')
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
+    }, [])
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex w-full bg-ctp-crust p-6">
@@ -49,7 +57,7 @@ export default function Home() {
           {songs.map((song, index) => {
             return (
               <div key={index} className="border">
-                <a href="https://www.google.com">
+                <a href="https://www.google.com" target="_blank">
                   <img src="https://placehold.co/600x400" className="mb-3" />
                 </a>
                 <div className="flex justify-center">{song}</div>
