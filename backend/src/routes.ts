@@ -1,8 +1,7 @@
 import { Router } from 'express';
+import { getRandomSongs } from './controllers/songController';
 const router = Router();
 
-router.get('/songs', (req, res) => {
-  res.json([{ id: 1, title: 'Song 1', artist: 'Artist 1' }]);
-});
+router.get('/api/songs', getRandomSongs);
 
 export default router;
