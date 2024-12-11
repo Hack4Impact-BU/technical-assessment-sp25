@@ -38,7 +38,7 @@ const TestSupabase: React.FC = () => {
 
   return (
     <div>
-      <h2>Projects from Supabase</h2>
+      <h2>Comments from Supabase</h2>
       <ul>
         {projects.map((project) => (
           <li key={project.id}>
