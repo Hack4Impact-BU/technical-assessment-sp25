@@ -1,43 +1,59 @@
 import "./songs.css"
 import React, { useState, useEffect } from 'react';
-import cover1 from '../../assets/rynweaver.jpeg'
-import cover2 from '../../assets/hippocampus.jpg'
-import cover3 from '../../assets/halfalive.jpg'
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-function Songs() {
-    const songs = [
-        { title: "Song 1", artist: "Artist 1", cover: cover1 },
-        { title: "Song 2", artist: "Artist 2", cover: cover2 },
-        { title: "Song 3", artist: "Artist 3", cover: cover3 }
-    ];
+import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import {format, set} from 'date-fns';
+
+function Songs( {date}) {
+    const [loading, setLoading] = useState(true);
+    const [songData, setSongData] = useState([]);
 
     useEffect(() => {
         console.log('Fetching song data...');
-        fetch('http://localhost:4000/songs/378195') 
-            .then(response => response.json())
-            .then(data => {
-                console.log('Song data:', data);
-            })
-            .catch(error => {
+        const dailyUpdate = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/3songs');
+                const data = await response.json();
+                // setSongData(data);
+                console.log('Song data fetched successfully:', data);
+                // setLoading(false);
+            } catch (error) {
                 console.error('Error fetching song data:', error);
-            });
-    }, []);
+            }
+        }
+        const updateSongs = async () => {
+            const formattedDate = encodeURIComponent(format(date, 'MM/dd/yyyy'));
+            try {
+                const response = await fetch(`http://localhost:4000/getSongs/${formattedDate}`);
+                const data = await response.json();
+                setSongData(data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching songs:', error);
+            }
+        }
+        dailyUpdate();
+        updateSongs();
+    }, [date]);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
 
     return (
         <div id="songs">
-            {songs.map((song, index) => (
+            {songData.map((songData, index) => (
                 <Card key={index} class="card">
                     <CardMedia
-                        sx={{ height: 200 }}
-                        image={song.cover}
-                        title={`Cover for ${song.title}`}
+                        sx={{ height: 300 }}
+                        image={songData.cover}
+                        title={`Cover for ${songData.title}`}
                     />
-                    <CardContent>
-                        <Typography variant="h5" component="h2">
-                            {song.title}
+                    <CardContent class="CardContent">
+                        <Typography variant="h6" component="h2">
+                            {songData.title}
                         </Typography>
                         <Typography color="lightgray">
-                            {song.artist}
+                            {songData.artist}
                         </Typography>
                     </CardContent>
                 </Card>
