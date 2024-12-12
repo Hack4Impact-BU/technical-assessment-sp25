@@ -18,9 +18,9 @@ Hi! Here's my finished technical assessment for the impact team. As required in 
 - [Link to Video of Running App](https://www.example.com)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-run npm install from frontend and backend folder
-run npm run dev from frontend
-run npm start from backend
+- run npm install from frontend and backend folder
+- run npm run dev from frontend
+- run npm start from backend
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
