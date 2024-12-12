@@ -13,7 +13,9 @@
 
 
 ## 🧐 About <a name = "about"></a>
-Hi! Here's my finished technical assessment for the impact team. As required in the README submission instructions, I have provided a version of my web app that is "runnable", in that it has no database and no mongoDB connect url, in the noDatabase folder. However, my finalised web app is in withDatabaseAndHistory and is the one I'm proud of (note that the frontend can run and be accessible, but no songs or comments will show due to the inability to start the backend without my mongoDB connect url). The finalised version has a mongoDB database, and persistent comment and song storage, and the ability to view songs and comments from previous days, as my video will show. The runnable version refreshes comments and the 3 random songs on page reload, so it does not have persistent storage.
+Hi! Here's my finished technical assessment for the impact team. It has been deployed at [https://benevolent-bonbon-e0ef4f.netlify.app/](https://benevolent-bonbon-e0ef4f.netlify.app/) for you to experience, with the backend deployed using heroku.  
+ As required in the README submission instructions, I have provided a version of my web app that is "runnable" locally, in that it has no database and no mongoDB connect url, in the noDatabase folder. The noDatabase version refreshes comments and the 3 random songs on every page reload due to no database storage.  
+ However, my finalised web app is in withDatabaseAndHistory and is the one I'm proud of (note that the frontend can run locally and be accessible, but no songs or comments will show due to the inability to start the backend without my mongoDB connect url). The finalised version has a mongoDB database, and persistent comment and song storage, and the ability to view songs and comments from previous days, as my video and deployed app both show. 
 
 - [Link to Video of Running App](https://www.example.com)
 
