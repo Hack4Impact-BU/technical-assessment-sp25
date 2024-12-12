@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="frontend/src/assets/song-discussion-board_thumbnail.png" alt="Project logo"></a>
+ <img src="withDatabaseAndHistory/frontend/src/assets/song-discussion-board_thumbnail.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Random Songs Daily Discussion Board</h3>
@@ -13,33 +13,21 @@
 
 
 ## 🧐 About <a name = "about"></a>
+Hi! Here's my finished technical assessment for the JDT team. As requested, I have provided a version of my web app that is runnable (has no database) in the noDatabase folder. However, my finalised web app is in withDatabaseAndHistory. The finalised version has a mongoDB database, and persistend comment storage and the ability to view songs and comments from previous days, as my video will show.
 
-A web app where users discuss 3 randomly selected songs queried from the GeniusAPI, updated daily. 
+- [Link to Video of Running App](https://www.example.com)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-
-
-### Prerequisites
-
-
-
-### Installing
-
-
-
-## 🎈 Usage <a name="usage"></a>
-
-
-
-## 🚀 Deployment <a name = "deployment"></a>
-
+run npm install from frontend and backend folder
+run npm run dev from frontend
+run npm start from backend
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) 
 - [Express](https://expressjs.com/)
 - [NodeJs](https://nodejs.org/en/)
-- [ReactJs]
+- [ReactJs](https://react.dev/)
 
 ## ✍️ Authors <a name = "authors"></a>
 
