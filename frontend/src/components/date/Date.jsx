@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
-import Comment from '../comment/Comment';
 import "./Date.css";
 
 function Date({ setSelectedDate }) {

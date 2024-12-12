@@ -1,6 +1,9 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-const uri = 'mongodb+srv://patrickfish10:Gatupu24@cluster0.ueln5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
 
 let client
 let clientPromise

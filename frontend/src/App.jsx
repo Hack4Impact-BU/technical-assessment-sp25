@@ -21,8 +21,8 @@ function App() {
     }}>
       <Date setSelectedDate={setSelectedDate}/>
       <SongDisplay selectedDate={selectedDate}/>
-      <Comment selectedDate={selectedDate}/>
-      <CommentSection/>
+      <Comment selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
+      <CommentSection selectedDate={selectedDate}/>
       
     </Box>
   )

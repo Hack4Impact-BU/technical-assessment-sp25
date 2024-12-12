@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import cron from 'node-cron';
+
 import { getDataBase } from './mongodb.js';
 
 dotenv.config();
@@ -15,9 +17,13 @@ const GENIUS_API_TOKEN = process.env.CLIENT_ACCESS_TOKEN;
 
 
 const fetchRandomSongs = async () => {
-    console.log("function executed");
+    console.log("fetch random songs function executed");
     try {
-        const randomIds = [27,32452,12312]; //change to real IDs (ids that can be chosen from);
+        const id1 = Math.floor(Math.random() * 99999) + 1;
+        const id2 = Math.floor(Math.random() * 99999) + 1;
+        const id3 = Math.floor(Math.random() * 99999) + 1;
+
+        const randomIds = [id1, id2, id3];
         const songData = await Promise.all(
             randomIds.map(async (id) => {
                 const response = await fetch (`https://api.genius.com/songs/${id}`, {
@@ -27,6 +33,8 @@ const fetchRandomSongs = async () => {
                 });
 
                 if (!response.ok) {
+                    console.log("Re-fetching songs");
+                    fetchRandomSongs();
                     throw new Error(`Failed to fetch song with ID ${id}: ${response.statusText}`);
                 }
 
@@ -49,11 +57,13 @@ const fetchRandomSongs = async () => {
         const db = await getDataBase('comment_section');
         const collection = db.collection('songs');
 
-        await collection.updateOne(
-            { type: 'dailySongs' },
-            { $set: { songs: songData, date: today } },
-            { upsert: true }
-        );
+        console.log(today);
+
+        await collection.insertOne({
+            type: 'dailySongs',
+            songs: songData,
+            date: today,
+        });
 
         console.log('Songs updated successfully:', songData);
         
@@ -62,16 +72,14 @@ const fetchRandomSongs = async () => {
     }
 };
 
-// cron.schedule('0 0 * * *', fetchRandomSongs, {
-//     timezone: 'America/New_York',
-// });
-
-fetchRandomSongs();
+cron.schedule('0 0 * * *', fetchRandomSongs, {
+    timezone: 'America/New_York',
+});
 
 app.get('/api/songs/:date', async (req, res) => {
     try {
         const { date } = req.params;
-        console.log(date);
+
         const db = await getDataBase('comment_section');
         const collection = db.collection('songs');
         const songData = await collection.findOne({ date });
@@ -124,6 +132,31 @@ app.post('/api/comments', async (req,res) => {
         res.status(500).send('Server error');
     }
 });
+
+app.post('/api/commentSection', async (req,res) => {
+    try {
+        const { date } = req.body;
+
+        const db = await getDataBase('comment_section');
+        const collection = db.collection('songData');
+
+        const data = await collection.find({ date }).toArray();
+
+        if(!data) {
+            return res.status(404).json({ songs: { song1: [], song2: [], song3: [] } });
+        }
+
+        try {
+            const clonedData = JSON.parse(JSON.stringify(data));
+            // console.log(clonedData);
+            res.status(200).json(clonedData);
+        } catch (er) {
+            console.error('Can\'t convert data to a JSON', er);
+        }
+    } catch (error) {
+        console.error('Error fetching comments from database', error);
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

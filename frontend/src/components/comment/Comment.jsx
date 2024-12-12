@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, TextField, FormControl, RadioGroup, Radio, FormControlLabel, Button} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-function Comment({ selectedDate }) {
+function Comment({ selectedDate, setSelectedDate }) {
     const [username, setUsername] = React.useState('');
     const [comment, setComment] = React.useState('');
     const [songChoice, setSongChoice] = React.useState('song1');
@@ -35,6 +35,8 @@ function Comment({ selectedDate }) {
                 console.log('Comment submitted successfully!');
                 setUsername('');
                 setComment('');
+                setSelectedDate(selectedDate);
+                location.reload();
             } else {
                 alert('Failed to submit comment. Please try again.');
             }
