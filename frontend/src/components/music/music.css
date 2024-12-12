@@ -1,0 +1,32 @@
+.music-section{
+    margin: 30px auto;
+    text-align: center;
+    width: 80%;
+}
+h2{
+    color: #ffc107;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+.songs-container{
+    display:flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.song-card{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 5px;
+}
+
+.song-card img{
+    height: 150px;
+    width: auto;
+}
