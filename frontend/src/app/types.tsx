@@ -1,11 +1,12 @@
 export interface Comment {
     comment: string,
-    time: string,
-    author: string
+    timestamp: string,
+    name: string
 }
 
 export interface Song {
-    title: string,
+    song_title: string,
     link: string,
-    artist: string
+    artist: string,
+    cover: string,
 }
