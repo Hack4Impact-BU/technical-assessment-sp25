@@ -13,7 +13,7 @@
 
 
 ## 🧐 About <a name = "about"></a>
-Hi! Here's my finished technical assessment for the JDT team. As requested, I have provided a version of my web app that is runnable (has no database) in the noDatabase folder. However, my finalised web app is in withDatabaseAndHistory. The finalised version has a mongoDB database, and persistend comment storage and the ability to view songs and comments from previous days, as my video will show.
+Hi! Here's my finished technical assessment for the impact team. As required in the README submission instructions, I have provided a version of my web app that is runnable (has no database so no mongoDB password requirement) in the noDatabase folder. However, my finalised web app is in withDatabaseAndHistory and is the one I'm most proud of. The finalised version has a mongoDB database, and persistent comment and song storage, and the ability to view songs and comments from previous days, as my video will show. The runnable version refreshes comments and the 3 random songs on page reload, so it does not have persistent storage.
 
 - [Link to Video of Running App](https://www.example.com)
 
@@ -28,6 +28,7 @@ run npm start from backend
 - [Express](https://expressjs.com/)
 - [NodeJs](https://nodejs.org/en/)
 - [ReactJs](https://react.dev/)
+- [MaterialUI](https://mui.com/material-ui/)
 
 ## ✍️ Authors <a name = "authors"></a>
 
