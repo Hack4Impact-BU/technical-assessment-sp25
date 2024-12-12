@@ -1,51 +1,42 @@
-# Impact Team Technical Assessment Spring 2025
-An assessment on a candidates ability to create a full-stack web app using React.js + Node.js OR Flask.
+# Simon's Spring 2025 Hack4Impact Technical Assessment Project
 
-By <b>December 5th at 11:59pm</b> you must fork this repository and submit a PR (pull request) to this repository with your completed version of the app. 
+## Features
 
-## 📝 Summary
-Create an app that acts as a music review community board. Everyday your app will randomly pick 3 songs  for people to listen to and talk about in a discussion board below.
-This will not require user authentication, but will require a database and use of the [Genius API](https://docs.genius.com/#/getting-started-h1).
+- **Displays 3 random songs from the Genius API**
+- **Allows users to comment on the songs that are currently featured**
+- **Has a history of all past days' songs and comments**
+- **Gives users with 3 or more comments a top-contributor checkmark**
+- [**Currently deployed to Vercel at https://music-app-simon.vercel.app/**](https://music-app-simon.vercel.app/)
 
-<img src='./demo-ss/mockup.png' width="500px"/>
+## Technologies Used
 
-*This is an example of what the app could look like. Designed by Owen in Figma and linked below*
+### Frontend
 
-## 🗂️ Requirements
-1. Use a JS framework
-    - If using React **don't use `create-react-app`** because it is deprecated
-2. Use a UI library (it will make it much easier on you)
-3. Query the Genius [api endpoint](https://docs.genius.com/#/getting-started-h1) and display 3 random songs in cards (with relevant info)
-    - You will need to find a valid range of IDs for songs when randomizing. Play around with the API a bit to see if you find a pattern and keep retrying the fetch until you get 3 songs. You can leverage response codes to know if it was successful or not
-4. Have a backend to store the comments you get everyday and the songs that day 
-5. Have function to be able to go back to previous days to see the songs/discussion then
+- **Typescript**
+- **Next.js**
+- **Material-UI**
+- **Axios**
 
-## 🎖️ Bonuses
-- Deploy your application (frontend, backend, and database) so that it is able to be interacted with online. Attach link to your submission
-- If someone makes a comment using the same name multiple times, put a checkmark next to their name showing they contribute a lot
-- Add a "vote" function to the form where they add a comment for which of the 3 they liked the most. At the end of the day (according to Coordinated Universal Time -- or UTC) identify a song as the "winner" and show that it won if people ever go back to check previous days
+### Backend
 
+- **Typescript**
+- **Next.js API routes**
+- **Prisma**
+- **PostgreSQL**
+- **Supabase**
 
-## 📚 Resources 
-[**Figma Mockup**](https://www.figma.com/design/LSIE24Q1A7bMFEKeF5hLOE/Music-Discussion-Board?node-id=0-1&node-type=canvas&t=WKB5W38IIXPkSHsx-0): use this for inspiration for what the app could look like. It doesn't need to look like this if you don't want it to however.
+## Application Questions
 
-[**Genius API Endpoint**](https://docs.genius.com/#/getting-started-h1): You will need to use this to get the songs / info about the song / image of song
+### Demo Link
 
-[**Deployment Tutorial**](): TO BE ADDED. You don't necessarily need to use these technologies but they are outlined here. Consider using
-- Heroku for backend
-- Netlify / Vercel for frontend
-- RDS from AWS
+[Demo Video](https://drive.google.com/file/d/1oga9sQx5qqkY0Gl_tnDdIh3XBaFK_VDv/view?usp=sharing)
 
-**UI Libraries**: Help with cohesive design. Look into MUI / Ant Design / others
+### How the project went
 
-## 🤖 LLM Usage
-Using LLMs for code assistance is allowed but you WILL be asked questions about your code in the interview (if invited) so you should be very comfortable with the purpose of the code.
+I thought the project went well, even though this was my first time using Typescript and Next.js. The entire process was pretty challeging because I had to learn it all as I went, but I'm glad I did it and it helped me build a stronger all-around understanding of web dev. I wish I used React-query for loading states and management because it would have been easier to deal with a few problems I encountered. I'm glad I was able to deploy my project on Vercel, despite the numerous networking and environment variable issues that came up. I didn't get to implement the voting feature, but I did a lot more than I expected. There were some features and visual components I would love to have added if I had more time, but learning as you go makes projects much more time consuming, so I didn't get to it.
 
-## 🤝 Submission
-In order for your code to be assessed you must submit a PR by December 5th at 11:59pm with the following
-- runnable code (except the database stuff because you shouldn't have your connection uri's on github)
-- a screenrecording of your code working and you explaining how you did it
-- a couple sentences about how the project went
-- what you would change about this assessment for next year 
+### What I would change about the next assessment
 
-** **YOU DO NOT NEED TO HAVE A 100% COMPLETE PROJECT TO SUBMIT. Please submit whatever you are able to make** **
+I thought this project was fun and I had a reasonable amount of time to work on it; next time I would love to see some different features like the top contributor one. Overall it was a good assessment of full stack dev skills.
+
+Thank you Khoa for having this readme I could template from
