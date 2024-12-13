@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+#covers {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+    width: 80%;
+    gap: 7em;
+    padding-top: 75px;
+    margin: 30px auto;
+}
+
+button{
+    transition: border-color 0.25s;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}

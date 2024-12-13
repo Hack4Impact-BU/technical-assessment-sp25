@@ -1,0 +1,18 @@
+.comments {
+    width: 70%;
+    margin: 30px auto;
+    background-color: #eee;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+}
+
+#comment{
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    display: block;
+    border-radius: 50%;
+    place-items: center;
+    font-size: 2em;
+}
