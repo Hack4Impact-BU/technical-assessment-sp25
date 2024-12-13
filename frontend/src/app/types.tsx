@@ -5,8 +5,12 @@ export interface Comment {
 }
 
 export interface Song {
-    song_title: string,
+    title: string,
     link: string,
     artist: string,
     cover: string,
+}
+
+export interface CommentAggregatedData {
+    name: string
 }

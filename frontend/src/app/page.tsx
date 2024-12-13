@@ -6,14 +6,18 @@ import CommentForm from "./components/CommentForm";
 import { Comment, Song } from "./types";
 import { Button } from "@mui/material";
 import Comments from "./components/Comments";
-const d = new Date();
+import { FaAnglesRight } from "react-icons/fa6";
+import { FaAnglesLeft } from "react-icons/fa6";
+// const d = new Date();
 
 export default function Home() {
   const [songs, setSongs] = useState<Song[]>();
   const [comments, setComments] = useState<Comment[]>();
-
   const [days, setDays] = useState(0);
   const [date, setDate] = useState(new Date().toLocaleDateString());
+  const [favoriteSong, setFavoriteSong] = useState('')
+  const [frequentCommenters, setFrequentCommenters] = useState()
+  
   const handleDate = (numDays: number): void => {
     const resultDate = new Date(new Date());
     resultDate.setDate(resultDate.getDate() + (days + numDays));
@@ -27,7 +31,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("FETCHING");
     fetch("http://localhost:4000/songs", {
       method: "POST",
       headers: {
@@ -39,7 +42,14 @@ export default function Home() {
       .then((data) => {
         if (data.success) {
           setSongs(data.result.songs);
-          setComments(data.result.comments)
+          setComments(data.result.comments);
+          setFavoriteSong(data.result.favorite_song)
+          setFrequentCommenters(data.frequentCommenters)
+        } else {
+          setSongs(undefined);
+          setComments(undefined);
+          setFavoriteSong("")
+          setFrequentCommenters(undefined)
         }
       });
     return () => {};
@@ -48,7 +58,8 @@ export default function Home() {
   const updateComments = (
     name: string,
     comment: string,
-    timestamp: string
+    timestamp: string,
+    favorite_song: string
   ): void => {
     fetch("http://localhost:4000/update_comments", {
       method: "POST",
@@ -57,55 +68,66 @@ export default function Home() {
       },
       body: JSON.stringify({
         date: date,
-        comment: { name: name, comment: comment, timestamp: timestamp },
+        comment: { name: name, comment: comment, timestamp: timestamp},
+        favorite_song: favorite_song != '' ? songs?.findIndex((value) => value.title == favorite_song) : undefined 
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // console.log(data.comments.comments)
           setComments(data.comments.comments);
+          setFrequentCommenters(data.frequentCommenters)
         }
       });
   };
-  console.log(comments)
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex w-full bg-ctp-crust p-6">
         <b>Music Discussion Board</b>
       </div>
-      <main className="flex flex-col border p-5">
-        <div className="flex justify-end mb-5">
-          <Button variant="outlined" onClick={() => handleDate(-1)}>
-            Back
+      <main className="flex flex-col p-5">
+        <div className="flex justify-end mb-5 items-center gap-5">
+          <Button variant="contained" onClick={() => handleDate(-1)} className="bg-ctp-blue hover:opacity-90">
+            <FaAnglesLeft />
           </Button>
           {date}
-          <Button variant="outlined" onClick={() => handleDate(1)}>
-            Forward
+          <Button variant="contained" onClick={() => handleDate(1)} className="bg-ctp-blue hover:opacity-90">
+            <FaAnglesRight />
           </Button>
         </div>
-        <div className="flex items-center justify-center w-full mb-5 gap-5">
-          {songs &&
-            songs.map((song, index) => {
-              return (
-                <div key={index} className="border">
-                  <a href={song.link} target="_blank">
+        <div className="flex items-center justify-center w-full mb-5 gap-5 p-5">
+          {songs
+            ? songs.map((song, index) => {
+                return (
+                  <div key={index} className="border w-full">
+                    <a href={song.link} target="_blank">
+                      <img
+                        src={song.cover}
+                        className="mb-3"
+                      />
+                    </a>
+                    <div className="flex justify-center">{song.title}</div>
+                    <div className="flex justify-center">By</div>
+                    <div className="flex justify-center">{song.artist}</div>
+                    <div className="flex justify-center">{favoriteSong == song.title && "(Voted most favorite song by everyone!)"}</div>
+                  </div>
+                );
+              })
+            : Array.from(Array(3).keys()).map((_, index) => {
+                return (
+                  <div className="border" key={index}>
                     <img
-                      src={song.cover}
+                      src="https://placehold.co/600x400"
                       width={600}
                       height={400}
-                      className="mb-3"
+                      className="mb-3 opacity-0"
                     />
-                  </a>
-                  <div className="flex justify-center">{song.song_title}</div>
-                  <div className="flex justify-center">By</div>
-                  <div className="flex justify-center">{song.artist}</div>
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
         </div>
-        <Comments comments={comments} />
-        <CommentForm getData={updateComments} />
+        <Comments comments={comments} frequentCommenters={frequentCommenters} />
+        {songs && <CommentForm getData={updateComments} song_titles={[...songs.map((value) => {return value.title})]} />}
       </main>
     </div>
   );
