@@ -35,7 +35,6 @@ function Comment({ selectedDate, setSelectedDate }) {
                 console.log('Comment submitted successfully!');
                 setUsername('');
                 setComment('');
-                setSelectedDate(selectedDate);
                 location.reload();
             } else {
                 alert('Failed to submit comment. Please try again.');
@@ -43,12 +42,11 @@ function Comment({ selectedDate, setSelectedDate }) {
         } catch (error) {
             console.error('Error submitting comment', error);
         }
-        
     };
     
-
     return (
-        <Box
+        <>
+            <Box
             id="commentArea"
             component="form"
             sx={{ 
@@ -69,84 +67,86 @@ function Comment({ selectedDate, setSelectedDate }) {
             autoComplete='off'
         >
 
-        <FormControl>
-                <RadioGroup
-                    row
+            <FormControl>
+                    <RadioGroup
+                        row
+                        required
+                        value={songChoice}
+                        id="song-choice"
+                        sx={{padding: 2}}
+                        onChange={(event) => {
+                            setSongChoice(event.target.value)
+                        }}
+                    >
+                        <FormControlLabel 
+                        value="song1" 
+                        control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
+                        label="Song 1" />
+                        <FormControlLabel 
+                        value="song2" 
+                        control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
+                        label="Song 2" />
+                        <FormControlLabel 
+                        value="song3" 
+                        control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
+                        label="Song 3" />
+                    </RadioGroup>
+                </FormControl>
+
+                <TextField
                     required
-                    value={songChoice}
-                    id="song-choice"
-                    sx={{padding: 2}}
-                    onChange={(event) => {
-                        setSongChoice(event.target.value)
+                    id="username-input"
+                    label="UserName"
+                    variant="filled"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                    sx={{
+                        width: 250, 
+                        margin: 1,
+                        border: 'solid',
+                        borderColor: '#AF9AB2',
+                        borderRadius: 2,
+                        '& .MuiInputLabel-root': { color: '#271F30',},
+
                     }}
+                />
+                
+                <TextField
+                    required
+                    id="comment-input"
+                    label="Comment"
+                    variant='filled'
+                    multiline
+                    maxRows={4}
+                    value={comment}
+                    onChange={(event) => setComment(event.target.value)}
+                    sx={{
+                        width: 500, 
+                        margin: 1, 
+                        border: 'solid', 
+                        borderColor: '#AF9AB2', 
+                        borderRadius: 2,
+                        '& .MuiInputLabel-root': { color: '#271F30' },
+                    }}
+                />
+
+                <Button 
+                variant='contained' 
+                color='#271F30'
+                
+                size='large' 
+                onClick={(e) => handleSubmit(e)}
+                endIcon={<SendIcon/>}
+                sx={{
+                    bgcolor:'#A69CAC',
+                    marginLeft: '20px',
+                }}
                 >
-                    <FormControlLabel 
-                    value="song1" 
-                    control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
-                    label="Song 1" />
-                    <FormControlLabel 
-                    value="song2" 
-                    control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
-                    label="Song 2" />
-                    <FormControlLabel 
-                    value="song3" 
-                    control={<Radio sx={{ '&.Mui-checked': { color: '#271F30' } }} />} 
-                    label="Song 3" />
-                </RadioGroup>
-            </FormControl>
-
-            <TextField
-                required
-                id="username-input"
-                label="UserName"
-                variant="filled"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                sx={{
-                    width: 250, 
-                    margin: 1,
-                    border: 'solid',
-                    borderColor: '#AF9AB2',
-                    borderRadius: 2,
-                    '& .MuiInputLabel-root': { color: '#271F30',},
-
-                }}
-            />
-            
-            <TextField
-                required
-                id="comment-input"
-                label="Comment"
-                variant='filled'
-                multiline
-                maxRows={4}
-                value={comment}
-                onChange={(event) => setComment(event.target.value)}
-                sx={{
-                    width: 500, 
-                    margin: 1, 
-                    border: 'solid', 
-                    borderColor: '#AF9AB2', 
-                    borderRadius: 2,
-                    '& .MuiInputLabel-root': { color: '#271F30' },
-                }}
-            />
-
-            <Button 
-            variant='contained' 
-            color='#271F30'
-            
-            size='large' 
-            onClick={(e) => handleSubmit(e)}
-            endIcon={<SendIcon/>}
-            sx={{
-                bgcolor:'#6C5A49',
-                marginLeft: '20px',
-            }}
-            >
-                Post
-            </Button>
-        </Box>
+                    Post
+                </Button>
+            </Box>
+        </>
+        
     )
 }
 
