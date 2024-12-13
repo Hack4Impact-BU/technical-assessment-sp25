@@ -1,5 +1,5 @@
 import "./covers.css";
-import React from "react";
+import React, { useState} from "react";
 
 const Cover: React.FC = () =>{
     return (
