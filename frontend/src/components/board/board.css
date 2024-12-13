@@ -81,3 +81,12 @@
     margin: 5px 0;
     color: #212529;
 }
+
+select{
+    margin-bottom: 20px;
+    border: none;
+    background-color: #ddd;
+    color:#e0a800;
+    padding: 10px 15px;
+    border-radius: 5px;
+}

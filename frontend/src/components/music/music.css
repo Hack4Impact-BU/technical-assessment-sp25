@@ -30,3 +30,11 @@ h2{
     height: 150px;
     width: auto;
 }
+
+.winner-board{
+    text-align: center;
+}
+.winner-board h3{
+    color: #ffc107;
+    font-size: 20px;
+}

@@ -1,14 +1,21 @@
 import './board.css'
 import { useState, useEffect } from 'react';
+import { FaCrown } from "react-icons/fa";
+
+//import HowToRegIcon from '@mui/icons-material/HowToReg';
+// import { Crown } from 'lucide-react';
 
 
 
-function Board({date}){
+
+function Board({date, songs}){
 
     const [name, setName] = useState('');
     const [comment, setComment] = useState('');
     const [comments, setComments] = useState([]);
-    const [message, setMessage] = useState('')    
+    const [message, setMessage] = useState('')
+    const [frequentContributors, setFrequentContributors] = useState([]);
+    const [selectedSong, setSelectedSong] = useState(''); 
 
     // Get comments
     async function getComments() {
@@ -51,7 +58,7 @@ function Board({date}){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, comment }),
+                body: JSON.stringify({ name, comment, selectedSong}),
             });
 
             const result = await response.json();
@@ -59,9 +66,27 @@ function Board({date}){
             // Clear input fields
             setName(''); 
             setComment('');
+            setSelectedSong('')
+            
         } catch (e) {
             console.error(e);
         }
+    }
+
+    // Function to count names
+    function getNameCounts(comments) {
+        const counts = {};
+        comments.forEach((comment) => {
+            counts[comment.name] = (counts[comment.name] || 0) + 1;
+        });
+        return counts;
+    }
+
+    // Function to find frequent contributors
+    function findFrequentContributors() {
+        const counts = getNameCounts(comments);
+        const frequentNames = Object.keys(counts).filter((name) => counts[name] > 1);
+        setFrequentContributors(frequentNames);
     }
 
     // Get comments when page is rendered
@@ -74,6 +99,10 @@ function Board({date}){
         }
         
     }, [date]);
+
+    useEffect(() => {
+        findFrequentContributors();
+    }, [comments]);
 
 
     return(
@@ -93,6 +122,16 @@ function Board({date}){
                         onChange={(e) => setComment(e.target.value)}
                     ></textarea>
 
+                <select
+                    value={selectedSong}
+                    onChange={(e) => setSelectedSong(e.target.value)}
+                >
+                    <option value="">Select to vote for a song</option>
+                    {songs.map((song) => (
+                        <option key={song.id} value={song.id}>{song.title}</option> // Use song.id as the value
+                    ))}
+                </select>
+
                     <button onClick={postComment}>Post</button>
                 </div>
             }
@@ -102,7 +141,11 @@ function Board({date}){
                 {comments.map((c, index) => (
                     
                     <div key={index} className="comment">
-                        <h4>{c.name}:</h4>
+                        <h4>{c.name}
+                            {frequentContributors.includes(c.name) && (
+                                <span className="checkmark"><FaCrown/></span>
+                            )}:</h4>
+                        
                         <p>{c.comment}</p>
                     </div>
                 ))}

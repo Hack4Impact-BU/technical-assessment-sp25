@@ -54,7 +54,7 @@ function App() {
           }}/></button>}
         </div>
         <Music date={date}/>
-        <Board date={date}/>
+        
       </main>
       
     </>
