@@ -89,7 +89,7 @@ export const Navbar: React.FC<dateProps> = ({
               component="div"
               sx={{
                 fontWeight: "bold",
-                letterSpacing: 1,
+                letterSpacing: -1,
                 background: "linear-gradient(90deg, #1565c0, #003c80)",
                 backgroundSize: "400% 400%",
                 animation: "gradientAnimation 5s ease infinite",
@@ -101,7 +101,7 @@ export const Navbar: React.FC<dateProps> = ({
                 fontFamily: "Helvetica",
                 fontSize: { xs: "1.5rem", sm: "2rem" },
                 textAlign: { xs: "center", sm: "left" },
-                marginLeft: { xs: "0", sm: "20px" }, // Align the text to the left with some margin
+                marginLeft: { xs: "0", sm: "10px" }, // Align the text to the left with some margin
               }}
             >
               Shuffley
@@ -111,14 +111,10 @@ export const Navbar: React.FC<dateProps> = ({
           <Box
             sx={{
               display: "flex",
-              padding: "5px",
               justifyContent: "space-between",
               alignItems: "center",
-              backgroundColor: "transparent", // Make the background transparent
-              borderRadius: "8px",
-              flexDirection: { xs: "column", sm: "row" },
-              gap: { xs: "12px", sm: "8px" },
-              width: { xs: "100%", sm: "auto" },
+              minWidth: "400px",
+              gap: "8px",
             }}
           >
             <IconButton
@@ -136,12 +132,12 @@ export const Navbar: React.FC<dateProps> = ({
             <Typography
               variant="subtitle1"
               sx={{
-                fontWeight: "bold",
+                fontWeight: "medium",
                 fontSize: { xs: "1rem", sm: "1.2rem" },
                 color: "#ffffff",
-                "&:hover": {
-                  color: "#1976d2",
-                },
+                textAlign: "center",
+                minWidth: "250px", // Ensure static width to prevent movement
+                cursor: "pointer",
               }}
             >
               {formattedDate}
