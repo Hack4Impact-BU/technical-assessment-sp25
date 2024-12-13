@@ -8,15 +8,14 @@ import { Button } from "@mui/material";
 import Comments from "./components/Comments";
 import { FaAnglesRight } from "react-icons/fa6";
 import { FaAnglesLeft } from "react-icons/fa6";
-// const d = new Date();
 
 export default function Home() {
-  const [songs, setSongs] = useState<Song[]>();
-  const [comments, setComments] = useState<Comment[]>();
-  const [days, setDays] = useState(0);
-  const [date, setDate] = useState(new Date().toLocaleDateString());
-  const [favoriteSong, setFavoriteSong] = useState('')
-  const [frequentCommenters, setFrequentCommenters] = useState()
+  const [songs, setSongs] = useState<Song[]>(); // songs state for array loop
+  const [comments, setComments] = useState<Comment[]>(); // comments state for array loop
+  const [days, setDays] = useState(0); // how many days starting from today
+  const [date, setDate] = useState(new Date().toLocaleDateString()); // date
+  const [favoriteSong, setFavoriteSong] = useState('') // favoriteSong on whichever day it is
+  const [frequentCommenters, setFrequentCommenters] = useState() // frequentCommenters for checks
   
   const handleDate = (numDays: number): void => {
     const resultDate = new Date(new Date());
@@ -45,7 +44,7 @@ export default function Home() {
           setComments(data.result.comments);
           setFavoriteSong(data.result.favorite_song)
           setFrequentCommenters(data.frequentCommenters)
-        } else {
+        } else { // if no success, basically just show a template shell
           setSongs(undefined);
           setComments(undefined);
           setFavoriteSong("")
@@ -81,11 +80,11 @@ export default function Home() {
       });
   };
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full">
       <div className="flex w-full bg-ctp-crust p-6">
         <b>Music Discussion Board</b>
       </div>
-      <main className="flex flex-col p-5">
+      <main className="flex flex-col p-5 w-full">
         <div className="flex justify-end mb-5 items-center gap-5">
           <Button variant="contained" onClick={() => handleDate(-1)} className="bg-ctp-blue hover:opacity-90">
             <FaAnglesLeft />
@@ -99,10 +98,12 @@ export default function Home() {
           {songs
             ? songs.map((song, index) => {
                 return (
-                  <div key={index} className="border w-full">
+                  <div key={index} className="border-2 w-full flex flex-col items-center p-3 rounded-lg ">
                     <a href={song.link} target="_blank">
                       <img
                         src={song.cover}
+                        width={200}
+                        height={200}
                         className="mb-3"
                       />
                     </a>
@@ -113,7 +114,7 @@ export default function Home() {
                   </div>
                 );
               })
-            : Array.from(Array(3).keys()).map((_, index) => {
+            : Array.from(Array(3).keys()).map((_, index) => { // template shell for when theres no song data
                 return (
                   <div className="border" key={index}>
                     <img

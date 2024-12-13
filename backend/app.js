@@ -29,7 +29,7 @@ function getRandomInt(min, max) {
 }
 
 app.post("/songs", async (req, res) => {
-  const aggregatedData = await discussionData
+  const aggregatedData = await discussionData // aggregation pipeline
     .aggregate([
       { $unwind: "$comments" },
       { $project: { name: { $toLower: "$comments.name"} } },

@@ -22,9 +22,9 @@ function CommentForm({
   ) => void;
   song_titles: string[];
 }>) {
-  const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const menuOpen = Boolean(anchorEl)
+  const [open, setOpen] = useState(false); // opens form
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // for dropdown menu
+  const menuOpen = Boolean(anchorEl) // for dropdown menu
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const [favoriteSong, setFavoriteSong] = useState("Click to vote for your favorite song!"); // button text for the vote function is controlled by this state
@@ -43,7 +43,7 @@ function CommentForm({
   const handleClose = (): void => {
     setName("");
     setComment("");
-    setFavoriteSong("Click to vote for your favorite song!");
+    setFavoriteSong("Click to vote for your favorite song!"); // resets state
     setOpen(false);
   };
   const menuHandleClose = (): void => {

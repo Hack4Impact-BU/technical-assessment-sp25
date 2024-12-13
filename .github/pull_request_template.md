@@ -23,15 +23,15 @@ Please check all of these that you completed
 - [x] Add a "vote" function to the form where they add a comment for which of the 3 they liked the most. At the end of the day (according to Coordinated Universal Time -- or UTC) identify a song as the "winner" and show that it won if people ever go back to check previous days
 
 ## Screen Recording 
-**Link**: < paste it here>
+**Link**: https://youtu.be/7hqPC3uVA9A
 
 ## Written Portion
 1. **How did the project go? What parts of it did you most enjoy / find yourself good at?**
    
-This project was overall pretty interesting to make
+This project was overall pretty interesting to make, especially the bonuses. I really enjoyed performing MongoDB aggregate operations to find the commenters that commented more than once, it was a fun brain exercise. I also really enjoyed making the frontend UI layout with Tailwind and exercising my skills regarding React + Next.js, and trying to fetch data from the database and the Genius API. I felt like I could really show off my skills with this application. I found out that I'm pretty good at the backend portion of this app, specifically the fetching and the database operations. Overall I enjoyed making this project.
 
 2. **What would you change about this assessment for next year?**
    
-< answer here>
+For next year, I think it would be a lot more interesting if some sort of account authentication was added as a bonus, since most web applications have accounts. Furthermore, I would also change the API for this, because I think that the Spotify API could be better suited for this kind of project.
 
 
