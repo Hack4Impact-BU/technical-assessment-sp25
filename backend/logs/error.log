@@ -1,0 +1,42 @@
+2024-12-13T00:09:30.229Z [ERROR]: Error fetching song with ID 263161: Request failed with status code 404
+2024-12-13T00:09:30.810Z [ERROR]: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:09:30.810Z [ERROR]: Error in getRandomSongs: Error: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:10:06.354Z [ERROR]: Error fetching song with ID 264143: Request failed with status code 404
+2024-12-13T00:10:08.366Z [ERROR]: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:10:08.366Z [ERROR]: Error in getRandomSongs: Error: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:10:35.465Z [ERROR]: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:10:35.465Z [ERROR]: Error in getRandomSongs: Error: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:12:09.825Z [ERROR]: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:12:09.826Z [ERROR]: Error in getRandomSongs: Error: Failed to save daily songs: value too long for type character varying(100)
+2024-12-13T00:17:32.558Z [ERROR]: Error in getComments: RangeError: Invalid time value
+2024-12-13T00:17:34.568Z [ERROR]: Error in getComments: RangeError: Invalid time value
+2024-12-13T00:17:35.627Z [ERROR]: Error in getComments: RangeError: Invalid time value
+2024-12-13T00:18:40.915Z [ERROR]: Error fetching song with ID 295035: Request failed with status code 404
+2024-12-13T00:18:41.794Z [ERROR]: Error fetching song with ID 241776: Request failed with status code 404
+2024-12-13T00:18:41.940Z [ERROR]: Error fetching song with ID 251854: Request failed with status code 404
+2024-12-13T00:18:42.019Z [ERROR]: Error fetching song with ID 224227: Request failed with status code 404
+2024-12-13T00:18:42.112Z [ERROR]: Error fetching song with ID 156636: Request failed with status code 404
+2024-12-13T01:27:06.774Z [ERROR]: Error fetching song with ID 218524: Request failed with status code 404
+2024-12-13T02:07:51.663Z [ERROR]: Supabase Error: TypeError: fetch failed
+2024-12-13T02:07:51.664Z [ERROR]: Error in getRandomSongs: Error: Failed to retrieve daily songs: TypeError: fetch failed
+2024-12-13T02:28:13.725Z [ERROR]: Error fetching song with ID 279805: Request failed with status code 404
+2024-12-13T03:07:42.829Z [ERROR]: Error fetching song with ID 233399: Request failed with status code 404
+2024-12-13T03:07:44.077Z [ERROR]: Error fetching song with ID 239845: Request failed with status code 404
+2024-12-13T03:07:44.707Z [ERROR]: Error fetching song with ID 63298: Request failed with status code 404
+2024-12-13T03:09:22.213Z [ERROR]: Error fetching song with ID 114187: Request failed with status code 404
+2024-12-13T03:09:29.429Z [ERROR]: Error fetching song with ID 248582: Request failed with status code 404
+2024-12-13T03:15:43.618Z [ERROR]: Error fetching song with ID 158154: Request failed with status code 404
+2024-12-13T03:15:44.354Z [ERROR]: Error fetching song with ID 121673: Request failed with status code 404
+2024-12-13T03:15:44.434Z [ERROR]: Error fetching song with ID 289560: Request failed with status code 404
+2024-12-13T03:20:04.799Z [ERROR]: Error fetching song with ID 270329: Request failed with status code 404
+2024-12-13T03:21:25.067Z [ERROR]: Error fetching song with ID 290622: Request failed with status code 404
+2024-12-13T03:25:37.498Z [ERROR]: Error fetching song with ID 279110: Request failed with status code 404
+2024-12-13T03:25:54.166Z [ERROR]: Error fetching song with ID 240853: Request failed with status code 404
+2024-12-13T03:25:54.270Z [ERROR]: Error fetching song with ID 44993: Request failed with status code 404
+2024-12-13T03:25:56.689Z [ERROR]: Error fetching song with ID 296087: Request failed with status code 404
+2024-12-13T03:25:56.789Z [ERROR]: Error fetching song with ID 267738: Request failed with status code 404
+2024-12-13T03:26:04.278Z [ERROR]: Error fetching song with ID 269529: Request failed with status code 404
+2024-12-13T03:26:04.390Z [ERROR]: Error fetching song with ID 86964: Request failed with status code 404
+2024-12-13T03:26:04.439Z [ERROR]: Error fetching song with ID 255966: Request failed with status code 404
+2024-12-13T03:26:04.922Z [ERROR]: Error fetching song with ID 217296: Request failed with status code 404
+2024-12-13T03:26:04.993Z [ERROR]: Error fetching song with ID 294644: Request failed with status code 404
